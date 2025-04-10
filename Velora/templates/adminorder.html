@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Admin Orders | VELORA</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h3>ALL ORDERS</h3><br>
+    <ul>
+        <li><a href="/admin67672/all-products">View Products</a></li>
+        <li><a href="/admin67672/orders">View Orders</a></li>
+        <li><a href="/admin67672/addproduct">Add Products</a></li>
+        <li><a href="/admin67672/managecoupons">Add Coupons</a></li>
+        <li><a href="/admin67672/logout">Admin Logout</a></li>
+
+    </ul><br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Items</th>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>Pincode</th>
+                <th>City and State</th>
+                <th>Total price</th>
+                <th>Status</th>
+                <th>Payment Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.username }}</td>
+                <td>{{ order.phone }}</td>
+                <td>
+                    <ul>
+                        {% for item in order['items'] %}
+                        <li>
+                            <strong>Name:</strong> {{ item['name'] }}<br>
+                            <strong>Price:</strong> ₹{{ item['price'] }}<br>
+                            <img src="{{ item['image'] }}" alt="{{ item['name'] }}" width="100" height="100">
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ order['address_line_one'] }}</td>
+                <td>{{ order['address_line_two'] }}</td>
+                <td>{{ order['pincode'] }}</td>
+                <td>{{ order['state'] }}</td>
+                <td>₹{{ order['total_price'] }}</td>
+                <td>{{ order['status'] }}</td>
+                <td>{{ order['payment_method'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+    
+    
+    
+</body>
+</html>

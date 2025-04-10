@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <title>Men's Clothing Collection | VELORA</title>
+</head>
+<style>
+    .head{
+        background-image: url('{{url_for("static", filename="images/mc.jpg")}}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        position: relative;
+        width: 100%;
+        height: 730px;
+    }
+    .news{
+        font-family: 'Raleway',sans-serif;
+        color:white;
+        font-weight: 200;
+        position: absolute;
+        margin-top:-100px;
+    }
+    .big{
+        font-family: 'Raleway',sans-serif;
+        color:white;
+        font-weight: 430;
+        letter-spacing: 5px;
+        font-size:45px;
+        margin-top:40px;
+    }
+    .shop {
+        display: flex; 
+        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap:0px;
+        justify-content: center;
+    }
+
+    .item {
+        height:fit-content;
+        width: 400px;
+        background-color: white;
+        margin-top: 100px;
+        margin-left: 30px;
+        border-radius: 10px;
+        cursor:pointer;
+        color: black;
+        transition: all 0.3s ease;
+    }
+    .content{
+        padding:10px;
+    }
+    .item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .contact{
+            background-color: black;
+            color:white;
+            font-family: 'Lora',sans-serif;
+            height:fit-content;
+            padding:70px;
+        }
+
+
+
+        /* for fotter */
+        .contact h1{
+            text-align: center;
+            font-size:90px;
+            letter-spacing: 12px;
+        }
+        .mens2{
+            border:none;
+            padding:10px;
+            width:fit-content;
+            background-color: white;
+            color:black;
+            border-radius: 30px;
+            transition:all 0.6s ease;
+        }
+        .mens2:hover{
+            background-color:#CAB29F;
+        }
+        .navlinks{
+            display: flex;
+            flex-direction: column;
+        }
+        .na {
+            color: white;
+        }
+        .na:hover{
+            color:white;
+            text-decoration: none;
+        }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home"><h2>Velora</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            For him
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/mens-collection">New in Men</a></li>
+                            <li><a class="dropdown-item" href="/mens-shoes">Shoes</a></li>
+                            <li><a class="dropdown-item" href="/mens-clothes">Clothing</a></li>
+                            <li><a class="dropdown-item" href="/mens-bags">Bags</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            For her
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/womens-collection">New in Women</a></li>
+                            <li><a class="dropdown-item" href="/womens-shoes">Shoes</a></li>
+                            <li><a class="dropdown-item" href="/womens-clothes">Clothing</a></li>
+                            <li><a class="dropdown-item" href="/womens-bags">Handbags</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Children
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/baby-collection">Baby</a></li>
+                            <li><a class="dropdown-item" href="/girls-collection">Girls</a></li>
+                            <li><a class="dropdown-item" href="/boys-collection">Boys</a></li>
+                            <li><a class="dropdown-item" href="/gifts">Gifts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/travel">Travel</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                                <path d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu" style="width:fit-content;" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <li><a class="dropdown-item" href="/cart">Cart</a></li>
+                            <li><a class="dropdown-item" href="/orders">Orders</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Add the Cart and Account links here with ms-auto to align them to the right -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                            <path d="M3.87289 17.0194L2.66933 9.83981C2.48735 8.75428 2.39637 8.21152 2.68773 7.85576C2.9791 7.5 3.51461 7.5 4.58564 7.5H19.4144C20.4854 7.5 21.0209 7.5 21.3123 7.85576C21.6036 8.21152 21.5126 8.75428 21.3307 9.83981L20.1271 17.0194C19.7282 19.3991 19.5287 20.5889 18.7143 21.2945C17.9 22 16.726 22 14.3782 22H9.62182C7.27396 22 6.10003 22 5.28565 21.2945C4.47127 20.5889 4.27181 19.3991 3.87289 17.0194Z" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M17.5 7.5C17.5 4.46243 15.0376 2 12 2C8.96243 2 6.5 4.46243 6.5 7.5" stroke="currentColor" stroke-width="1.5" />
+                        </svg></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="head">
+        <span class="news">NEW IN</span><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span class="big">MEN'S CLOTHES</span>
+        <br>
+        <p style="color:white; font-family:'Raleway',sans-serif; font-size:20px; text-align: center;">Revamp your wardrobe with our latest collection of men's clothing, showcasing fresh styles and new arrivals to elevate your fashion game.</p>
+    </div>
+    <br>
+    <br>
+    <div class="shop">
+        {% for product in products %}
+            <div class="item">
+                <a href="/{{ product.name }}/desc">
+                    {% if product.image_data %}
+                        <img src="data:image/jpeg;base64,{{ product.image_data }}" alt="Product Image" style="width:400px;height:400px;">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <br>      <br>
+    <br>      <br>
+    <br>
+    <br>
+    <div class="contact">
+        <h1>VELORA</h1>
+        <br>
+        <br>
+        <div class="btns">
+            <button class="mens2" style="display:block;margin:auto;">Contact Us <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+                <path d="M9.1585 5.71223L8.75584 4.80625C8.49256 4.21388 8.36092 3.91768 8.16405 3.69101C7.91732 3.40694 7.59571 3.19794 7.23592 3.08785C6.94883 3 6.6247 3 5.97645 3C5.02815 3 4.554 3 4.15597 3.18229C3.68711 3.39702 3.26368 3.86328 3.09497 4.3506C2.95175 4.76429 2.99278 5.18943 3.07482 6.0397C3.94815 15.0902 8.91006 20.0521 17.9605 20.9254C18.8108 21.0075 19.236 21.0485 19.6496 20.9053C20.137 20.7366 20.6032 20.3131 20.818 19.8443C21.0002 19.4462 21.0002 18.9721 21.0002 18.0238C21.0002 17.3755 21.0002 17.0514 20.9124 16.7643C20.8023 16.4045 20.5933 16.0829 20.3092 15.8362C20.0826 15.6393 19.7864 15.5077 19.194 15.2444L18.288 14.8417C17.6465 14.5566 17.3257 14.4141 16.9998 14.3831C16.6878 14.3534 16.3733 14.3972 16.0813 14.5109C15.7762 14.6297 15.5066 14.8544 14.9672 15.3038C14.4304 15.7512 14.162 15.9749 13.834 16.0947C13.5432 16.2009 13.1588 16.2403 12.8526 16.1951C12.5071 16.1442 12.2426 16.0029 11.7135 15.7201C10.0675 14.8405 9.15977 13.9328 8.28011 12.2867C7.99738 11.7577 7.85602 11.4931 7.80511 11.1477C7.75998 10.8414 7.79932 10.457 7.90554 10.1663C8.02536 9.83828 8.24905 9.56986 8.69643 9.033C9.14586 8.49368 9.37058 8.22402 9.48939 7.91891C9.60309 7.62694 9.64686 7.3124 9.61719 7.00048C9.58618 6.67452 9.44362 6.35376 9.1585 5.71223Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg></button>
+        </div>
+        <br>
+        <h3>Navigation Links</h3>
+        <div class="navlinks">
+            <a href="#" class="na">Women</a>
+            <a href="#" class="na">Men</a>
+            <a href="#" class="na">Children</a>
+            <a href="#" class="na">Services</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <p>© 2016 - 2024 Velora Velora S.p.A. - All rights reserved. SIAE LICENCE # 2294/I/1936 and 5647/I/1936</p>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>   
+</body>
+</html>

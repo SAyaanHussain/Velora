@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Add Product | VELORA</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    
+    <ul>
+        <li><a href="/admin67672/all-products">View Products</a></li>
+        <li><a href="/admin67672/orders">View Orders</a></li>
+        <li><a href="/admin67672/addproduct">Add Products</a></li>
+        <li><a href="/admin67672/managecoupons">Add Coupons</a></li>
+        <li><a href="/admin67672/logout">Admin Logout</a></li>
+    </ul>
+
+
+    <div id="add-product">
+        <h2>Add New Product</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="name">Product Title</label>
+            <input type="text" name="name" placeholder="Product Title" required><br><br>
+            
+            <label for="description">Description</label>
+            <textarea name="description" placeholder="Product Description" required></textarea><br><br>
+            
+            <label for="price">Price</label>
+            <input type="number" name="price" step="0.01" placeholder="Product Price" required><br><br>
+            
+            <label for="image">Image</label>
+            <input type="file" name="image" accept="image/*" required><br><br>
+            <label for="name">Product Type (Tag)</label>
+            <input type="text" name="tag" placeholder="Product Tag" required><br><br>
+            <label for="name">Gender</label>
+            <input type="text" name="gender" placeholder="Gender" required><br><br>
+            <label for="name">Quantity</label>
+            <input type="number" name="quantity" placeholder="Quantity" required><br><br>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>
