@@ -257,7 +257,7 @@ def product_desc(productname):
 @login_required
 def cart():
     return render_template('cart.html')
-stripe.api_key = "sk_test_51P4TSoSFPrVdKBVbmjp9LASNKS33nvJlYFF5lrve0DX2ld9rKePslNPDZZW21aH0MyFfeGpDv0WAuWRgMsMpeV9000LM8mZYSC"
+stripe.api_key = "STRIPE"
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     try:
