@@ -12,7 +12,7 @@ from bson import ObjectId
 
 app = Flask(__name__)
 app.secret_key = '0c6e69f08d231cee70b09b729e78efca'
-client = pymongo.MongoClient("mongodb+srv://aishahussain13579:a9831122132@adainsta.tfexlrz.mongodb.net/", tlsCAFile=certifi.where())
+client = pymongo.MongoClient("DATABASE", tlsCAFile=certifi.where())
 db = client['FootPath']
 user_collection = db['loginData']
 product_collection = db['products']
@@ -121,17 +121,15 @@ def mensclothes():
         if image_id:
             try:
                 image_file = fs.get(image_id)  
-                img_data = image_file.read()  # Read the image data
-                
-                # Convert the image data to Base64 for displaying in the template
+                img_data = image_file.read()  
                 img_base64 = base64.b64encode(img_data).decode('utf-8')
-                cloth['image_data'] = img_base64  # Add the image data to the cloth dict
+                cloth['image_data'] = img_base64 
                 
             except Exception as e:
                 print(f"Error retrieving image: {e}")
-                cloth['image_data'] = None  # If error occurs, set image_data to None
+                cloth['image_data'] = None  
     
-    return render_template('mensclothing.html', products=clothes)  # Pass the full clothes list to the template
+    return render_template('mensclothing.html', products=clothes)  
 
 
 @app.route('/mens-bags')
@@ -245,8 +243,6 @@ def product_desc(productname):
     product = product_collection.find_one({"name": productname})
     if not product:
         return "Product not found", 404
-
-    # Retrieve image data
     image_data = None
     if 'image_id' in product:
         try:
@@ -254,8 +250,6 @@ def product_desc(productname):
             image_data = base64.b64encode(image_file.read()).decode('utf-8')
         except Exception as e:
             print(f"Error retrieving image: {e}")
-
-    # Pass the product data to the template
     return render_template('product_desc.html', product=product, image_data=image_data)
 
 
@@ -275,7 +269,7 @@ def create_checkout_session():
                     'product_data': {
                         'name': item['name'],
                     },
-                    'unit_amount': int(float(item['price']) * 100),  # Convert to paisa
+                    'unit_amount': int(float(item['price']) * 100),  
                 },
                 'quantity': 1,
             } for item in data['items']
@@ -311,7 +305,6 @@ def process_cod_order():
         items = data.get('items')
         total_price = data.get('total')
 
-        # Save the order in the 'orders' collection
         order = {
             "username": username,
             "phone": phone,
@@ -326,7 +319,6 @@ def process_cod_order():
         }
         orders_collection.insert_one(order)
 
-        # Redirect to success page
         return jsonify({'success': True, 'redirect_url': '/success-cod'})
     except Exception as e:
         print(f"Error processing COD order: {e}")
@@ -339,7 +331,7 @@ def success_cod():
 
 
 # ADMIN PANEL
-hashed_password = bcrypt.hashpw(b"002777abb$$2ijjj98277sha77719bcrypt720adminpanelaccess78889923132", bcrypt.gensalt())
+hashed_password = bcrypt.hashpw(b"002777abb$$dsds", bcrypt.gensalt())
 
 @app.route('/admin67672', methods=['GET', 'POST'])
 def adminlog():
@@ -373,9 +365,7 @@ def addprod():
 def order():
     orders_collection = db["orders"]
 
-    orders = list(orders_collection.find())  # Fetch all orders
-
-    # Debugging: Print the structure of the orders
+    orders = list(orders_collection.find()) 
     for order in orders:
         print(order)
 
@@ -388,8 +378,8 @@ def view_products():
     products_collection = db['products']
     products = list(products_collection.find())
     for product in products:
-        if isinstance(product.get('image_id'), bytes):  # Check if image_id is binary data
-            product['image_id'] = base64.b64encode(product['image_id']).decode('utf-8')  # Encode binary to Base64
+        if isinstance(product.get('image_id'), bytes): 
+            product['image_id'] = base64.b64encode(product['image_id']).decode('utf-8') 
         else:
             print(f"No image data or wrong data type for product: {product['_id']}")
     return render_template("adminprod.html", product=products)
@@ -397,19 +387,17 @@ def view_products():
 
 @app.route('/admin67672/logout')
 def admin_logout():
-    session.pop('admin_logged_in', None)  # Remove the admin session
-    return redirect(url_for('adminlog'))  # Redirect to admin login page
+    session.pop('admin_logged_in', None) 
+    return redirect(url_for('adminlog')) 
 
 @app.route('/admin67672/edit-product/<product_id>', methods=['GET', 'POST'])
 @admin_login_required
 def edit_product(product_id):
-    # Find the product by its ID
     product = product_collection.find_one({"_id": ObjectId(product_id)})
     if not product:
         return "Product not found", 404
 
     if request.method == 'POST':
-        # Get updated product information from the form
         name = request.form['name']
         description = request.form['description']
         price = float(request.form['price'])
@@ -417,13 +405,11 @@ def edit_product(product_id):
         tag = request.form['tag']
         gender = request.form['gender']
         quantity = request.form['quantity']
-
-        # If a new image is uploaded, save it and update the product's image ID
         if image:
             file_id = fs.put(image, filename=secure_filename(image.filename))
             product['image_id'] = file_id
 
-        # Update the product information in the database
+        #update db
         product_collection.update_one(
             {"_id": ObjectId(product_id)},
             {"$set": {
@@ -437,7 +423,7 @@ def edit_product(product_id):
             }}
         )
 
-        return redirect('/admin67672/all-products')  # Redirect to the products page after updating
+        return redirect('/admin67672/all-products')  
 
     return render_template('editprod.html', product=product)
 
